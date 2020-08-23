@@ -58,6 +58,12 @@ var welcomeMsg = document.getElementById("start-page")
 var timer = 75
 var mytimer = document.getElementById("my-timer")
 mytimer.innerText = timer
+var scoreDisplay = document.getElementById("print-scores")
+var startOverBtn = document.getElementById('start-over')
+var endPage = document.getElementById("score-page")
+var timeDisplay = document.getElementById("time-count")
+
+startOverBtn.addEventListener('click', startOver)
 
 var countdown = function () {
 
@@ -79,6 +85,8 @@ function startQuiz() {
     startButton.classList.add('hide')
     questionContainerEl.classList.remove('hide')
     welcomeMsg.classList.add('hide')
+    timeDisplay.classList.remove('hide')
+    timer = 75
     setNextQuestion()
     countdown()
     countdowndisplay()
@@ -142,5 +150,19 @@ function selectAnswer(e) {
 function endScore() {
     var initials = window.prompt("Your final score is " + timer + ". Please enter your initials to save.");
     localStorage.setItem("score", initials + " - " + timer);
-    return false;
+    var score = localStorage.getItem("score");
+    scoreDisplay.innerHTML = score;
+    endPage.classList.remove('hide')
+    questionContainerEl.classList.add('hide')
+    timeDisplay.classList.add('hide')
+    
+}
+
+function startOver() {
+    welcomeMsg.classList.remove('hide')
+    startButton.classList.remove('hide')
+    questionContainerEl.classList.add('hide')
+    endPage.classList.add("hide")
+    timer = 75
+    currentQuestionIndex = 0;
 }

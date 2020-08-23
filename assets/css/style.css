@@ -44,3 +44,13 @@ body {
 .hide {
     display: none;
 }
+
+.timer {
+    position: fixed;
+    top: 8px;
+    right: 16px;
+}
+
+h2 {
+    
+}
